@@ -1,0 +1,2759 @@
+{
+  "metadata": {
+    "tool": "migRaven.Max",
+    "version": "1.0",
+    "total_prompts": 160,
+    "categories": [
+      "IT Security",
+      "Verwaltbarkeit",
+      "Onboarding",
+      "Verzeichnisstrukturen",
+      "CISO Berichte",
+      "Entra ID",
+      "Teams",
+      "Obsolete Accounts"
+    ],
+    "created": "2025-10-16",
+    "description": "Best Practice Katalog für Security Audit mit migRaven.Max - 150 vordefinierte Prompts für umfassende IT-Infrastruktur-Analysen"
+  },
+  "prompts": [
+    {
+      "category": "IT Security",
+      "title": "Privilegierte Konten ohne MFA-Anforderung",
+      "prompt": "Identifiziere alle User-Konten mit administrativen Rechten (Mitglied in Domain Admins, Enterprise Admins oder Schema Admins), die keine Multi-Faktor-Authentifizierung konfiguriert haben. Analysiere die Beziehungen MEMBER_OF zu privilegierten Gruppen und prüfe EntraAuthMethod-Verknüpfungen.",
+      "expected_result": "Liste aller privilegierten Konten ohne MFA mit Risikoeinschätzung, betroffenen Gruppen und Empfehlungen zur Absicherung.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "8.3 - MFA for all non-console administrative access",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight",
+        "NIST_800-63B": "Digital Identity Guidelines - Authentication"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Konten mit schwachen Passwortrichtlinien",
+      "prompt": "Finde alle User-Konten, bei denen PASSWD_NOTREQD=true oder DONT_EXPIRE_PASSWORD=true gesetzt ist. Bewerte das Sicherheitsrisiko basierend auf den Gruppenmitgliedschaften und Berechtigungen.",
+      "expected_result": "Detaillierte Auflistung aller Konten mit schwachen Passworteinstellungen, gruppiert nach Risikostufe mit Handlungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "A.9.4.3 - Password management system",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight",
+        "NIST_800-63B": "Password Guidelines"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Kerberos Delegation Risiken",
+      "prompt": "Identifiziere alle Computer und User mit TRUSTED_FOR_DELEGATION=true oder TRUSTED_TO_AUTH_FOR_DELEGATION=true. Analysiere die potentiellen Angriffsvektoren und bewerte das Risiko.",
+      "expected_result": "Übersicht über alle Delegation-Konfigurationen mit Risikoanalyse, betroffenen Systemen und Empfehlungen zur Härtung.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1558 - Steal or Forge Kerberos Tickets",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Unverschlüsselte Passwörter erlaubt",
+      "prompt": "Suche nach Konten mit ENCRYPTED_TEXT_PWD_ALLOWED=true. Bewerte die Sicherheitsimplikationen und identifiziere betroffene Systeme und Services.",
+      "expected_result": "Liste aller Konten, die unverschlüsselte Passwörter zulassen, mit Schweregrad-Bewertung und Mitigationsstrategien.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Fehlende LAPS-Implementierung",
+      "prompt": "Analysiere alle Computer-Objekte und identifiziere diejenigen ohne LAPS-Konfiguration (hasLAPS=false). Priorisiere nach Systemtyp (Server vs. Workstation) und Kritikalität.",
+      "expected_result": "Detaillierter Report über Computer ohne LAPS, kategorisiert nach Typ und Kritikalität mit Implementierungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Restrict Administrative Privileges",
+        "Microsoft_Security_Baseline": "LAPS Implementation"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Abgelaufene LAPS-Passwörter",
+      "prompt": "Identifiziere alle Computer mit LAPS, bei denen msLAPS-PasswordExpirationTime oder nativeLapsPasswordExpiration in der Vergangenheit liegt. Bewerte das Risiko.",
+      "expected_result": "Liste aller Systeme mit abgelaufenen LAPS-Passwörtern, sortiert nach Ablaufdatum mit Prioritätsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Restrict Administrative Privileges",
+        "Microsoft_Security_Baseline": "LAPS Implementation"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Kerberoasting-anfällige Service-Accounts",
+      "prompt": "Finde alle User-Konten mit gesetzten servicePrincipalName-Attributen. Analysiere deren Berechtigungen und bewerte die Kerberoasting-Anfälligkeit.",
+      "expected_result": "Übersicht über potentiell anfällige Service-Accounts mit Risikobewertung und Empfehlungen zur Absicherung (gMSA-Migration).",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "AS-REP Roasting Schwachstellen",
+      "prompt": "Identifiziere alle User mit DONT_REQ_PREAUTH=true. Analysiere die Gruppenmitgliedschaften und bewerte das Angriffsrisiko.",
+      "expected_result": "Detaillierte Liste aller Konten ohne Kerberos Pre-Authentication mit Risikoeinschätzung und Härtungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Excessive Fileserver-Berechtigungen",
+      "prompt": "Analysiere Fileserver_ACE-Beziehungen und identifiziere User oder Gruppen mit Full Control auf mehr als 50% der Verzeichnisse. Bewerte das Least-Privilege-Prinzip.",
+      "expected_result": "Report über übermäßige Berechtigungen mit betroffenen Accounts, Verzeichnissen und Empfehlungen zur Rechtereduktion.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Ungeschützte GPOs",
+      "prompt": "Finde GroupPolicyObjects ohne restriktive Berechtigungen. Identifiziere GPOs, bei denen Authenticated Users oder Domain Users Schreibrechte haben.",
+      "expected_result": "Liste aller unzureichend geschützten GPOs mit aktuellen Berechtigungen und Empfehlungen zur Absicherung.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1484 - Domain Policy Modification",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight",
+        "Microsoft_Security_Baseline": "Group Policy Security"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Kritische GPO-Verknüpfungen",
+      "prompt": "Analysiere GPO_LINKED_WITH_OU-Beziehungen und identifiziere GPOs, die auf Domain-Ebene oder auf kritischen OUs verknüpft sind. Bewerte Sicherheitseinstellungen.",
+      "expected_result": "Übersicht über kritische GPO-Verknüpfungen mit Analyse der Sicherheitseinstellungen und potentiellen Risiken.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1484 - Domain Policy Modification",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight",
+        "Microsoft_Security_Baseline": "Group Policy Security"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "AdminSDHolder-Schutz Anomalien",
+      "prompt": "Identifiziere privilegierte Gruppen und deren Mitglieder. Prüfe, ob der AdminSDHolder-Schutz korrekt angewendet wird und ob Anomalien in den Berechtigungen existieren.",
+      "expected_result": "Detaillierter Report über AdminSDHolder-Status mit Anomalien, betroffenen Objekten und Korrekturempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "SID History Missbrauchspotential",
+      "prompt": "Finde alle User und Gruppen mit HAS_SID_HISTORY-Beziehungen. Analysiere die historischen SIDs auf privilegierte Gruppenzugehörigkeiten.",
+      "expected_result": "Liste aller Konten mit SID History, Analyse der Berechtigungen und Empfehlungen zum Cleanup.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Unconstrained Delegation Risiken",
+      "prompt": "Identifiziere alle Computer mit TRUSTED_FOR_DELEGATION=true (Unconstrained Delegation). Bewerte das Risiko für Credential Theft und Pass-the-Ticket-Angriffe.",
+      "expected_result": "Kritischer Report über Unconstrained Delegation mit betroffenen Systemen und dringenden Mitigationsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1558 - Steal or Forge Kerberos Tickets",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Resource-Based Constrained Delegation",
+      "prompt": "Analysiere Computer mit isRBCDTarget=true und msDS-AllowedToDelegateTo-Attributen. Bewerte die Konfiguration auf Sicherheitsrisiken.",
+      "expected_result": "Übersicht über RBCD-Konfigurationen mit Risikoanalyse und Best-Practice-Empfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1558 - Steal or Forge Kerberos Tickets",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Schwache Kerberos-Verschlüsselung",
+      "prompt": "Finde Konten mit USE_DES_KEY_ONLY=true oder msDS-SupportedEncryptionTypes, die nur schwache Verschlüsselung (DES, RC4) unterstützen.",
+      "expected_result": "Liste aller Konten mit schwacher Kerberos-Verschlüsselung und Empfehlungen zur AES-Migration.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1558 - Steal or Forge Kerberos Tickets",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Domain Controller Sicherheitskonfiguration",
+      "prompt": "Analysiere alle Computer mit isDomainController=true. Prüfe Sicherheitseinstellungen, LAPS-Status, Patch-Level (operatingSystemVersion) und Berechtigungen.",
+      "expected_result": "Umfassender Security-Report aller Domain Controller mit Härtungsempfehlungen und Compliance-Status.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "RODC Konfigurationsrisiken",
+      "prompt": "Identifiziere Read-Only Domain Controller (isRODC=true). Analysiere Password Replication Policies und potentielle Sicherheitslücken.",
+      "expected_result": "Detaillierte Analyse der RODC-Konfigurationen mit Risikobewertung und Optimierungsvorschlägen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Information Security Management",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Excessive Reset Password Rechte",
+      "prompt": "Analysiere CAN_RESET_PASSWORD-Beziehungen und identifiziere Konten mit Passwort-Reset-Rechten auf privilegierte Accounts oder große Benutzergruppen.",
+      "expected_result": "Report über übermäßige Passwort-Reset-Berechtigungen mit Risikoanalyse und Empfehlungen zur Einschränkung.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "A.9.4.3 - Password management system",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "NIST Cybersecurity Framework",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Service Organization Control 2",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight",
+        "NIST_800-63B": "Password Guidelines"
+      }
+    },
+    {
+      "category": "IT Security",
+      "title": "Audit-Berechtigungen Analyse",
+      "prompt": "Untersuche CAN_AUDIT-Beziehungen und Fileserver_AUDIT_ACE. Identifiziere ungewöhnliche Audit-Konfigurationen oder fehlende Audit-Einstellungen auf kritischen Objekten.",
+      "expected_result": "Übersicht über Audit-Konfigurationen mit Lücken in der Überwachung und Empfehlungen zur Verbesserung.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "Tactic and Technique Mapping",
+        "PingCastle": "Active Directory Security Assessment",
+        "BSI_IT-Grundschutz": "German IT Security Standards",
+        "HIPAA": "Health Insurance Portability and Accountability Act",
+        "DSGVO": "Datenschutz-Grundverordnung (GDPR)",
+        "NIS2": "Network and Information Security Directive 2",
+        "ISO_27001": "Complete Framework",
+        "CIS_Controls": "Center for Internet Security Controls",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Payment Card Industry Data Security Standard",
+        "SOC2": "Trust Services Criteria",
+        "ANSSI": "Agence nationale de la sécurité des systèmes d'information",
+        "ACSC_Essential_8": "Australian Cyber Security Centre Essential Eight"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Inkonsistente Namenskonventionen bei Usern",
+      "prompt": "Analysiere User-Objekte auf Namenskonventionen. Identifiziere Inkonsistenzen in sAMAccountName, displayName und cn-Attributen. Bewerte die Verwaltbarkeit.",
+      "expected_result": "Report über Namenskonventionen mit Inkonsistenzen, Musteranalyse und Empfehlungen zur Standardisierung.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Fehlende Beschreibungen bei Gruppen",
+      "prompt": "Finde alle Group-Objekte ohne description-Attribut oder mit generischen Beschreibungen. Bewerte die Auswirkung auf die Verwaltbarkeit.",
+      "expected_result": "Liste aller Gruppen ohne aussagekräftige Beschreibungen mit Empfehlungen zur Dokumentation.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "OU-Struktur Tiefenanalyse",
+      "prompt": "Analysiere die OrganizationalUnit-Hierarchie über CONTAINED_IN-Beziehungen. Identifiziere zu tief verschachtelte OUs (>7 Ebenen) und bewerte die Komplexität.",
+      "expected_result": "Visualisierung der OU-Struktur mit Tiefenanalyse und Empfehlungen zur Vereinfachung.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Leere Organisationseinheiten",
+      "prompt": "Identifiziere OrganizationalUnits ohne untergeordnete Objekte (keine CONTAINED_IN-Beziehungen). Bewerte, ob diese gelöscht werden können.",
+      "expected_result": "Liste aller leeren OUs mit Erstellungsdatum und Empfehlungen zum Cleanup.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Gruppen ohne Mitglieder",
+      "prompt": "Finde alle Group-Objekte ohne MEMBER_OF-Beziehungen (eingehend). Analysiere Alter und Zweck der Gruppen.",
+      "expected_result": "Detaillierte Liste leerer Gruppen mit Alter, letzter Änderung und Löschempfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Redundante Gruppenmitgliedschaften",
+      "prompt": "Analysiere MEMBER_OF-Beziehungen und identifiziere User, die direkt und indirekt (über verschachtelte Gruppen) Mitglied derselben Gruppe sind.",
+      "expected_result": "Report über redundante Mitgliedschaften mit Optimierungsempfehlungen zur Vereinfachung.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Komplexe Gruppenverschachtelungen",
+      "prompt": "Identifiziere Gruppen mit mehr als 5 Ebenen Verschachtelung. Analysiere die Verwaltungskomplexität und potentielle Performance-Probleme.",
+      "expected_result": "Übersicht über komplexe Gruppenhierarchien mit Visualisierung und Vereinfachungsempfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Inkonsistente Computer-Namensgebung",
+      "prompt": "Analysiere Computer-Objekte auf Namenskonventionen. Identifiziere Abweichungen von Standard-Patterns und bewerte die Verwaltbarkeit.",
+      "expected_result": "Report über Computer-Namenskonventionen mit Inkonsistenzen und Standardisierungsempfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Fehlende Computer-Beschreibungen",
+      "prompt": "Finde alle Computer ohne description oder location-Attribute. Bewerte die Auswirkung auf Asset-Management und Inventarisierung.",
+      "expected_result": "Liste aller Computer ohne Dokumentation mit Empfehlungen zur Verbesserung des Asset-Managements.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "GPO-Namenskonventionen",
+      "prompt": "Analysiere GroupPolicyObject-Namen auf Konsistenz und Aussagekraft. Identifiziere generische oder kryptische Namen.",
+      "expected_result": "Übersicht über GPO-Namen mit Qualitätsbewertung und Empfehlungen zur Umbenennung.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix",
+        "MITRE_ATT&CK": "T1484 - Domain Policy Modification",
+        "Microsoft_Security_Baseline": "Group Policy Security"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Unverknüpfte GPOs",
+      "prompt": "Finde GroupPolicyObjects ohne GPO_LINKED_WITH_OU-Beziehungen. Bewerte, ob diese noch benötigt werden oder gelöscht werden können.",
+      "expected_result": "Liste aller nicht verknüpften GPOs mit Alter und Empfehlungen zum Cleanup.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix",
+        "MITRE_ATT&CK": "T1484 - Domain Policy Modification",
+        "Microsoft_Security_Baseline": "Group Policy Security"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Deaktivierte GPO-Verknüpfungen",
+      "prompt": "Identifiziere GPO_LINKED_WITH_OU-Beziehungen mit gpoDisabled=true. Analysiere, ob die Deaktivierung temporär oder permanent ist.",
+      "expected_result": "Report über deaktivierte GPO-Links mit Zeitanalyse und Aufräumempfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix",
+        "MITRE_ATT&CK": "T1484 - Domain Policy Modification",
+        "Microsoft_Security_Baseline": "Group Policy Security",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Container-Objekte Analyse",
+      "prompt": "Analysiere Container-Objekte und deren Verwendung. Identifiziere ungenutzte oder falsch verwendete Container.",
+      "expected_result": "Übersicht über Container-Struktur mit Nutzungsanalyse und Optimierungsempfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Inkonsistente OU-Namensgebung",
+      "prompt": "Untersuche OrganizationalUnit-Namen auf Konsistenz, Sprache und Struktur. Identifiziere Abweichungen von Namenskonventionen.",
+      "expected_result": "Report über OU-Namenskonventionen mit Inkonsistenzen und Standardisierungsvorschlägen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Gruppen-Eigentümer Analyse",
+      "prompt": "Analysiere MANAGED_BY-Beziehungen bei Gruppen. Identifiziere Gruppen ohne Eigentümer oder mit inaktiven Eigentümern.",
+      "expected_result": "Liste aller Gruppen mit Eigentümer-Status und Empfehlungen zur Verantwortlichkeitszuweisung.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Zirkuläre Gruppenmitgliedschaften",
+      "prompt": "Identifiziere zirkuläre MEMBER_OF-Beziehungen zwischen Gruppen. Bewerte die Auswirkung auf Performance und Verwaltbarkeit.",
+      "expected_result": "Detaillierter Report über zirkuläre Abhängigkeiten mit Visualisierung und Lösungsvorschlägen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Foreign Security Principals",
+      "prompt": "Analysiere ForeignSecurityPrincipal-Objekte. Identifiziere verwaiste oder ungenutzte FSPs aus Trust-Beziehungen.",
+      "expected_result": "Übersicht über FSPs mit Herkunftsanalyse und Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Unresolved Principals",
+      "prompt": "Finde alle UnresolvedPrincipal-Objekte in Berechtigungen. Analysiere die Ursachen und bewerte die Sicherheitsimplikationen.",
+      "expected_result": "Liste aller nicht aufgelösten Principals mit Ursachenanalyse und Bereinigungsempfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Schema-Erweiterungen Dokumentation",
+      "prompt": "Analysiere SchemaAttribute und SchemaClass-Objekte. Identifiziere custom Erweiterungen und bewerte deren Dokumentation.",
+      "expected_result": "Report über Schema-Erweiterungen mit Dokumentationsstatus und Empfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Verwaltbarkeit",
+      "title": "Well-Known SIDs Verwendung",
+      "prompt": "Untersuche WellKnownSID-Objekte und deren Verwendung in Berechtigungen. Identifiziere Best-Practice-Abweichungen.",
+      "expected_result": "Analyse der Well-Known SID-Verwendung mit Optimierungsempfehlungen.",
+      "compliance_frameworks": {
+        "PingCastle": "AD Health and Hygiene Checks",
+        "BSI_IT-Grundschutz": "Organizational Controls",
+        "ISO_27001": "Asset Management",
+        "CIS_Controls": "Asset Inventory",
+        "NIST_CSF": "Identify Function",
+        "ITIL": "IT Service Management",
+        "COBIT": "Control Objectives for Information Technologies",
+        "RACI": "Responsibility Assignment Matrix"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Domain-Struktur Übersicht",
+      "prompt": "Erstelle eine umfassende Übersicht über die Domain-Struktur. Zeige Anzahl der Domains, Functional Level, Vertrauensstellungen und grundlegende Konfigurationen.",
+      "expected_result": "Einführungsdokument zur Domain-Struktur mit allen relevanten Informationen für neue IT-Mitarbeiter.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "OU-Hierarchie Visualisierung",
+      "prompt": "Visualisiere die komplette OrganizationalUnit-Hierarchie über CONTAINED_IN-Beziehungen. Erkläre die Struktur und den Zweck der Hauptebenen.",
+      "expected_result": "Grafische Darstellung der OU-Struktur mit Erklärungen für Onboarding-Zwecke.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Gruppen-Kategorisierung",
+      "prompt": "Kategorisiere alle Gruppen nach Typ, Zweck und Verwendung. Erstelle eine Übersicht über wichtige Gruppen und deren Bedeutung.",
+      "expected_result": "Strukturierte Gruppendokumentation für neue Administratoren mit Erklärungen.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "GPO-Landkarte",
+      "prompt": "Erstelle eine Übersicht aller GroupPolicyObjects, deren Verknüpfungen und Hauptfunktionen. Priorisiere nach Wichtigkeit.",
+      "expected_result": "GPO-Dokumentation mit Erklärungen zu Zweck und Wirkungsbereich für Einarbeitung.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization",
+        "MITRE_ATT&CK": "T1484 - Domain Policy Modification",
+        "Microsoft_Security_Baseline": "Group Policy Security"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Privilegierte Gruppen Übersicht",
+      "prompt": "Identifiziere und dokumentiere alle privilegierten Gruppen (Domain Admins, Enterprise Admins, etc.) und deren Mitglieder. Erkläre Berechtigungen.",
+      "expected_result": "Dokumentation privilegierter Gruppen mit Verantwortlichkeiten für neue IT-Mitarbeiter.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Service-Account Inventar",
+      "prompt": "Erstelle ein Inventar aller Service-Accounts (User mit servicePrincipalName). Dokumentiere Zweck, verwendete Services und Verantwortliche.",
+      "expected_result": "Service-Account-Dokumentation mit Erklärungen für Onboarding.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Server-Infrastruktur Übersicht",
+      "prompt": "Analysiere alle Computer mit SERVER_TRUST_ACCOUNT=true. Kategorisiere nach Rolle, Betriebssystem und Funktion.",
+      "expected_result": "Server-Inventar mit Rollenbeschreibungen für neue Administratoren.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Domain Controller Dokumentation",
+      "prompt": "Dokumentiere alle Domain Controller (isDomainController=true). Zeige Standorte, Versionen, Rollen (RODC) und Konfigurationen.",
+      "expected_result": "DC-Dokumentation mit allen relevanten Informationen für Einarbeitung.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Fileserver-Struktur Übersicht",
+      "prompt": "Analysiere FileSystemDirectory-Objekte und erstelle eine Übersicht über die Fileserver-Struktur, Hauptverzeichnisse und Berechtigungskonzepte.",
+      "expected_result": "Fileserver-Dokumentation mit Strukturerklärungen für neue IT-Mitarbeiter.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Namenskonventionen Dokumentation",
+      "prompt": "Analysiere bestehende Namenskonventionen für User, Computer, Gruppen und OUs. Dokumentiere erkannte Patterns und Standards.",
+      "expected_result": "Namenskonventions-Leitfaden basierend auf aktueller Struktur für Onboarding.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Berechtigungskonzept Übersicht",
+      "prompt": "Analysiere HAS_PERMISSION-Beziehungen und erstelle eine Übersicht über das Berechtigungskonzept. Erkläre Vererbung und Delegation.",
+      "expected_result": "Berechtigungskonzept-Dokumentation mit Erklärungen für neue Administratoren.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "GPO-Vererbung und Enforcement",
+      "prompt": "Erkläre die GPO-Vererbungsstruktur anhand der aktuellen Konfiguration. Zeige Enforcement-Regeln und Blockierungen.",
+      "expected_result": "GPO-Vererbungsdokumentation mit praktischen Beispielen für Einarbeitung.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization",
+        "MITRE_ATT&CK": "T1484 - Domain Policy Modification",
+        "Microsoft_Security_Baseline": "Group Policy Security"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Entra ID Integration",
+      "prompt": "Dokumentiere die Entra ID (Azure AD) Integration. Zeige synchronisierte Objekte (SYNCED_FROM), Hybrid-Konfiguration und Besonderheiten.",
+      "expected_result": "Entra ID Integrationsdokumentation für neue IT-Mitarbeiter.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization",
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Teams und SharePoint Struktur",
+      "prompt": "Erstelle eine Übersicht über Teams (TeamsTeam) und SharePoint-Sites. Erkläre Governance-Modell und Verwaltungskonzept.",
+      "expected_result": "Teams/SharePoint-Dokumentation mit Strukturerklärungen für Onboarding.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Intune Device Management",
+      "prompt": "Dokumentiere die Intune-Integration (IntuneDevice, IntunePolicy). Zeige verwaltete Geräte, Policies und Enrollment-Prozesse.",
+      "expected_result": "Intune-Dokumentation mit Verwaltungskonzept für neue Administratoren.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Lokale Administratoren-Konzept",
+      "prompt": "Analysiere LocalGroup-Objekte und LOCAL_MEMBER_OF-Beziehungen. Dokumentiere das Konzept für lokale Administratoren auf Clients und Servern.",
+      "expected_result": "Dokumentation des lokalen Admin-Konzepts für Einarbeitung.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Backup- und Service-Accounts",
+      "prompt": "Identifiziere und dokumentiere alle Backup-, Monitoring- und Service-Accounts. Erkläre deren Verwendung und Berechtigungen.",
+      "expected_result": "Service-Account-Dokumentation mit Zweckerklärungen für Onboarding.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Claim-basierte Authentifizierung",
+      "prompt": "Dokumentiere ClaimType-Objekte und deren Verwendung. Erkläre das Claim-basierte Authentifizierungskonzept.",
+      "expected_result": "Claims-Dokumentation mit Erklärungen für neue IT-Mitarbeiter.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Resource Properties und DAC",
+      "prompt": "Erkläre ResourceProperty und ResourcePropertyList-Objekte. Dokumentiere Dynamic Access Control (DAC) Konfigurationen.",
+      "expected_result": "DAC-Dokumentation mit Konzepterklärungen für Einarbeitung.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Onboarding",
+      "title": "Wichtigste Kontakte und Verantwortlichkeiten",
+      "prompt": "Analysiere MANAGER_OF-Beziehungen und Gruppen-Eigentümer. Erstelle eine Übersicht über Verantwortlichkeiten und Ansprechpartner.",
+      "expected_result": "Verantwortlichkeiten-Übersicht mit Kontaktinformationen für neue Mitarbeiter.",
+      "compliance_frameworks": {
+        "ISO_27001": "A.7.2.2 - Information security awareness",
+        "BSI_IT-Grundschutz": "ORP.3 - Sensibilisierung und Schulung",
+        "NIST_CSF": "PR.AT - Security Awareness Training",
+        "CIS_Controls": "CIS Control 14 - Security Awareness Training",
+        "ITIL": "Knowledge Management",
+        "COBIT": "EDM04 - Ensured Resource Optimization"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Obsolete Verzeichnisse identifizieren",
+      "prompt": "Analysiere FileSystemDirectory-Objekte nach Alter und letztem Zugriff. Identifiziere Verzeichnisse ohne Aktivität in den letzten 2 Jahren.",
+      "expected_result": "Liste obsoleter Verzeichnisse mit Größe, Alter und Archivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Zu tiefe Verzeichnisstrukturen",
+      "prompt": "Analysiere FileSystemDirectory-Hierarchien über FILESERVER_FOLDER_HAS_CHILD. Identifiziere Pfade mit mehr als 10 Ebenen Tiefe.",
+      "expected_result": "Report über zu tiefe Verzeichnisstrukturen mit Umstrukturierungsempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Dateitypverteilung Analyse",
+      "prompt": "Analysiere CONTAINS_FILE_TYPE-Beziehungen. Erstelle eine Übersicht über Dateitypverteilung und identifiziere ungewöhnliche oder risikoreiche Dateitypen.",
+      "expected_result": "Detaillierte Dateitypanalyse mit Größenverteilung und Compliance-Bewertung.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1 - Business requirements for access control",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.DS - Data Security",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Große Dateien ohne Eigentümer",
+      "prompt": "Finde große Dateien (>100MB) ohne klare Eigentümer-Zuordnung (FILESERVER_FOLDER_OWNED_BY). Bewerte Speicherplatz-Optimierungspotential.",
+      "expected_result": "Liste großer Dateien ohne Eigentümer mit Speicherplatz-Analyse und Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1 - Business requirements for access control",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.DS - Data Security",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Verzeichnisse mit exzessiven Berechtigungen",
+      "prompt": "Analysiere ACE_ON_FILESERVER_FOLDER-Beziehungen. Identifiziere Verzeichnisse mit mehr als 20 direkten Berechtigungseinträgen.",
+      "expected_result": "Report über Verzeichnisse mit komplexen Berechtigungen und Vereinfachungsempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Berechtigungs-Vererbung Probleme",
+      "prompt": "Identifiziere Verzeichnisse mit unterbrochener Vererbung. Analysiere die Auswirkung auf Verwaltbarkeit und Sicherheit.",
+      "expected_result": "Übersicht über Vererbungs-Unterbrechungen mit Bewertung und Optimierungsvorschlägen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Doppelte Verzeichnisstrukturen",
+      "prompt": "Analysiere FileSystemDirectory-Namen und -Strukturen. Identifiziere potentiell doppelte oder redundante Verzeichnisse.",
+      "expected_result": "Liste potentiell redundanter Verzeichnisse mit Konsolidierungsempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Datei-Alter Kategorisierung",
+      "prompt": "Analysiere HAS_FILES_WITH_AGE-Beziehungen zu FileAgeCategory. Erstelle eine Übersicht über Datenalter und Archivierungspotential.",
+      "expected_result": "Altersverteilungs-Report mit Archivierungsempfehlungen nach Kategorien.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1 - Business requirements for access control",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.DS - Data Security",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Verwaiste Berechtigungen",
+      "prompt": "Finde Fileserver_ACE mit Verweisen auf UnresolvedPrincipal oder gelöschte Accounts. Bewerte Cleanup-Bedarf.",
+      "expected_result": "Liste verwaister Berechtigungen mit Bereinigungsempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Inkonsistente Verzeichnisnamen",
+      "prompt": "Analysiere FileSystemDirectory-Namen auf Konsistenz, Sonderzeichen und Namenskonventionen. Identifiziere problematische Namen.",
+      "expected_result": "Report über Namenskonventions-Verstöße mit Umbenennung-Empfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Leere Verzeichnisse",
+      "prompt": "Identifiziere FileSystemDirectory-Objekte ohne Unterverzeichnisse oder Dateien. Bewerte Löschpotential.",
+      "expected_result": "Liste leerer Verzeichnisse mit Alter und Löschempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Speicherplatz-Hotspots",
+      "prompt": "Analysiere FileSystemDirectory nach Größe. Identifiziere die Top 50 größten Verzeichnisse und deren Eigentümer.",
+      "expected_result": "Speicherplatz-Analyse mit Eigentümern und Optimierungspotential.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1 - Business requirements for access control",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.DS - Data Security",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Nicht-konforme Dateiablage",
+      "prompt": "Analysiere Dateiablagen auf Compliance-Verstöße (z.B. persönliche Daten in falschen Verzeichnissen). Nutze Dateitypanalyse.",
+      "expected_result": "Compliance-Report mit nicht-konformen Ablagen und Korrekturempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1 - Business requirements for access control",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.DS - Data Security",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Temporäre Verzeichnisse Cleanup",
+      "prompt": "Identifiziere Verzeichnisse mit Namen wie 'temp', 'tmp', 'old', 'backup' in der Produktivumgebung. Bewerte Cleanup-Bedarf.",
+      "expected_result": "Liste temporärer Verzeichnisse mit Größe und Löschempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Benutzer-Home-Verzeichnisse Audit",
+      "prompt": "Analysiere Home-Verzeichnisse und deren Eigentümer. Identifiziere Home-Verzeichnisse für inaktive oder gelöschte User.",
+      "expected_result": "Home-Verzeichnis-Audit mit Cleanup-Empfehlungen für verwaiste Verzeichnisse.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "Complete Framework",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Abteilungs-Verzeichnisse Struktur",
+      "prompt": "Analysiere Verzeichnisstrukturen nach Abteilungen. Bewerte Konsistenz und Standardisierung über Abteilungen hinweg.",
+      "expected_result": "Abteilungs-Verzeichnis-Analyse mit Standardisierungsempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Projekt-Verzeichnisse Lifecycle",
+      "prompt": "Identifiziere Projekt-Verzeichnisse. Analysiere Alter und Aktivität. Bewerte Archivierungsbedarf für abgeschlossene Projekte.",
+      "expected_result": "Projekt-Verzeichnis-Lifecycle-Report mit Archivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Freigabe-Berechtigungen vs. NTFS",
+      "prompt": "Vergleiche Share-Berechtigungen mit NTFS-Berechtigungen auf Fileserver-Verzeichnissen. Identifiziere Inkonsistenzen.",
+      "expected_result": "Berechtigungs-Inkonsistenz-Report mit Harmonisierungsempfehlungen.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Versteckte Freigaben Analyse",
+      "prompt": "Identifiziere versteckte Freigaben (ending mit $). Analysiere deren Verwendung und Sicherheitskonfiguration.",
+      "expected_result": "Versteckte-Freigaben-Report mit Sicherheitsbewertung.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1 - Business requirements for access control",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.DS - Data Security",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "Verzeichnisstrukturen",
+      "title": "Datei-Eigentümer Analyse",
+      "prompt": "Analysiere FILESERVER_FOLDER_OWNED_BY und HAS_FILES_OWNED_BY-Beziehungen. Identifiziere Verzeichnisse mit unklaren Eigentümern.",
+      "expected_result": "Eigentümer-Analyse mit Empfehlungen zur Verantwortlichkeitszuweisung.",
+      "compliance_frameworks": {
+        "HIPAA": "164.308(a)(4) - Information Access Management",
+        "DSGVO": "Art. 32 - Sicherheit der Verarbeitung",
+        "ISO_27001": "A.9.1 - Business requirements for access control",
+        "BSI_IT-Grundschutz": "APP.3.3 - Fileserver",
+        "CIS_Controls": "CIS Control 3 - Data Protection",
+        "NIST_CSF": "PR.DS - Data Security",
+        "PCI_DSS": "Requirement 3 - Protect stored cardholder data",
+        "SOC2": "CC6.6 - Logical and Physical Access - Data Classification"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "NIS2 Compliance Assessment",
+      "prompt": "Erstelle einen NIS2-Compliance-Report. Bewerte Sicherheitsmaßnahmen, Incident Response Capabilities, Supply Chain Security und Governance basierend auf AD- und Entra-Daten.",
+      "expected_result": "Umfassender NIS2-Compliance-Report mit Gap-Analyse und Handlungsempfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Framework",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "BSI IT-Grundschutz Bewertung",
+      "prompt": "Bewerte die IT-Infrastruktur nach BSI IT-Grundschutz-Bausteinen. Analysiere Identitäts- und Berechtigungsmanagement, Netzwerksicherheit und Protokollierung.",
+      "expected_result": "BSI IT-Grundschutz-Bewertungsreport mit Umsetzungsgrad und Maßnahmenkatalog.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "ISO 27001 Access Control Assessment",
+      "prompt": "Bewerte Access Control (ISO 27001 A.9) basierend auf AD-Berechtigungen, Gruppenmitgliedschaften und Privilegien-Management.",
+      "expected_result": "ISO 27001 Access Control Report mit Compliance-Status und Verbesserungsmaßnahmen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "HIPAA Security Rule Compliance",
+      "prompt": "Erstelle einen HIPAA Security Rule Compliance Report. Fokussiere auf Access Controls, Audit Controls und Integrity Controls basierend auf verfügbaren Daten.",
+      "expected_result": "HIPAA-Compliance-Report mit Bewertung der technischen Safeguards.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Framework",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Privileged Access Management (PAM) Status",
+      "prompt": "Analysiere das Privileged Access Management. Bewerte Anzahl privilegierter Konten, MFA-Status, Segregation of Duties und Just-in-Time Access.",
+      "expected_result": "PAM-Status-Report mit Risikobewertung und Optimierungsempfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Identity Governance Maturity",
+      "prompt": "Bewerte die Identity Governance Reife. Analysiere Lifecycle Management, Access Reviews, Rezertifizierung und Automatisierungsgrad.",
+      "expected_result": "Identity Governance Maturity Assessment mit Reifegradmodell und Roadmap.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Segregation of Duties (SoD) Analyse",
+      "prompt": "Analysiere Segregation of Duties Konflikte. Identifiziere User mit inkompatiblen Berechtigungskombinationen (z.B. Ersteller und Genehmiger).",
+      "expected_result": "SoD-Konflikt-Report mit Risikobewertung und Mitigationsempfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Least Privilege Compliance",
+      "prompt": "Bewerte die Einhaltung des Least Privilege Prinzips. Analysiere übermäßige Berechtigungen, ungenutzte Rechte und Privilegien-Creep.",
+      "expected_result": "Least Privilege Assessment mit Abweichungen und Optimierungsplan.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Framework",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Dormant Account Risk Assessment",
+      "prompt": "Identifiziere und bewerte inaktive Konten (keine Anmeldung >90 Tage). Analysiere deren Berechtigungen und Sicherheitsrisiken.",
+      "expected_result": "Dormant Account Risk Report mit Priorisierung und Deaktivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Password Policy Compliance",
+      "prompt": "Bewerte Password Policies auf Domain- und Entra ID-Ebene. Analysiere Komplexität, Ablauf, Historie und Ausnahmen.",
+      "expected_result": "Password Policy Compliance Report mit Best-Practice-Vergleich.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Framework",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "NIST_800-63B": "Password Guidelines",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Multi-Factor Authentication Coverage",
+      "prompt": "Analysiere MFA-Abdeckung über alle User. Identifiziere Lücken, besonders bei privilegierten und externen Konten.",
+      "expected_result": "MFA Coverage Report mit Gap-Analyse und Rollout-Empfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "External User Access Review",
+      "prompt": "Analysiere EntraGuestUser und externe Zugriffe. Bewerte Berechtigungen, Lifecycle und Compliance mit Access Policies.",
+      "expected_result": "External Access Review Report mit Risikobewertung und Governance-Empfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Audit Log Coverage Assessment",
+      "prompt": "Bewerte Audit-Logging-Konfiguration. Analysiere AUDIT_ACE, CAN_AUDIT-Beziehungen und Logging-Lücken auf kritischen Objekten.",
+      "expected_result": "Audit Coverage Assessment mit Lückenanalyse und Konfigurationsempfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Framework",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Data Classification Compliance",
+      "prompt": "Analysiere ResourceProperty und Claim-basierte Klassifizierung. Bewerte Abdeckung und Konsistenz der Datenklassifizierung.",
+      "expected_result": "Data Classification Report mit Abdeckungsgrad und Verbesserungsempfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Framework",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Cloud Security Posture (Entra ID)",
+      "prompt": "Bewerte die Entra ID Security Posture. Analysiere Conditional Access, Identity Protection, Privileged Identity Management.",
+      "expected_result": "Cloud Security Posture Report mit Risikobewertung und Härtungsempfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Endpoint Security Compliance",
+      "prompt": "Analysiere Computer und IntuneDevice-Objekte. Bewerte Patch-Level, Verschlüsselung, Antivirus und Compliance-Status.",
+      "expected_result": "Endpoint Security Compliance Report mit Non-Compliance-Geräten.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Framework",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Third-Party Risk Assessment",
+      "prompt": "Identifiziere Service-Accounts, EntraApplication und externe Integrationen. Bewerte Berechtigungen und Risiken.",
+      "expected_result": "Third-Party Risk Report mit Vendor-Berechtigungen und Risikominimierung.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Incident Response Readiness",
+      "prompt": "Bewerte Incident Response Readiness basierend auf Logging, privilegierten Zugriff-Überwachung und Segmentierung.",
+      "expected_result": "IR Readiness Assessment mit Capability-Bewertung und Verbesserungsempfehlungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Cyber Insurance Compliance Check",
+      "prompt": "Erstelle einen Report für Cyber Insurance Requirements. Bewerte MFA, Backup-Accounts, Privileged Access, Patching.",
+      "expected_result": "Cyber Insurance Compliance Report mit Erfüllungsgrad typischer Anforderungen.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Framework",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)",
+        "SOC2": "Trust Services Criteria"
+      }
+    },
+    {
+      "category": "CISO Berichte",
+      "title": "Executive Security Dashboard",
+      "prompt": "Erstelle ein Executive Security Dashboard. Zeige Key Risk Indicators, Compliance-Status, Trend-Analysen und Top-Risiken.",
+      "expected_result": "Executive-freundliches Security Dashboard mit visuellen KPIs und Zusammenfassung.",
+      "compliance_frameworks": {
+        "NIS2": "EU Directive on Network and Information Security",
+        "BSI_IT-Grundschutz": "Complete Framework",
+        "ISO_27001": "Complete Standard",
+        "HIPAA": "Complete Security Rule",
+        "DSGVO": "Complete Regulation",
+        "NIST_CSF": "Complete Framework",
+        "CIS_Controls": "Complete Control Set",
+        "SOX": "Sarbanes-Oxley Act",
+        "PCI_DSS": "Complete Standard",
+        "TISAX": "Trusted Information Security Assessment Exchange",
+        "KRITIS": "Kritische Infrastrukturen (Germany)"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Synchronisierungsstatus",
+      "prompt": "Analysiere SYNCED_FROM-Beziehungen zwischen AD und Entra ID. Identifiziere Synchronisierungsfehler, nicht-synchronisierte Objekte und Inkonsistenzen.",
+      "expected_result": "Sync-Status-Report mit Fehleranalyse und Troubleshooting-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Hybrid Identity Konfiguration",
+      "prompt": "Bewerte die Hybrid Identity Konfiguration. Analysiere onPremisesSyncEnabled, onPremisesSecurityIdentifier und Mapping-Qualität.",
+      "expected_result": "Hybrid Identity Assessment mit Konfigurationsbewertung und Optimierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Gastbenutzer Governance",
+      "prompt": "Analysiere EntraGuestUser-Objekte. Bewerte Lifecycle, Berechtigungen, Ablaufdaten und Compliance mit Guest Access Policies.",
+      "expected_result": "Guest User Governance Report mit Risikobewertung und Lifecycle-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Gruppen vs. AD Gruppen",
+      "prompt": "Vergleiche EntraGroup mit AD Group-Objekten. Analysiere Cloud-Only vs. Synchronized Groups und deren Verwendung.",
+      "expected_result": "Gruppen-Vergleichsanalyse mit Empfehlungen zur Optimierung der Gruppenstrategie.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Rollen-Zuweisungen",
+      "prompt": "Analysiere HAS_ROLE-Beziehungen zu EntraRole. Identifiziere privilegierte Rollenzuweisungen und bewerte PIM-Nutzung.",
+      "expected_result": "Entra ID Rollen-Report mit Privilegien-Analyse und PIM-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Application Permissions Audit",
+      "prompt": "Analysiere EntraApplication und EntraServicePrincipal. Bewerte API-Berechtigungen, Consent-Status und Risiko-Apps.",
+      "expected_result": "Application Permissions Audit mit Risiko-Apps und Consent-Governance-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "Complete Framework",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Trust Services Criteria",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Service Principal Lifecycle",
+      "prompt": "Analysiere EntraServicePrincipal-Objekte. Identifiziere ungenutzte, abgelaufene oder risikoreiche Service Principals.",
+      "expected_result": "Service Principal Lifecycle Report mit Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Lizenzzuweisung",
+      "prompt": "Analysiere HAS_LICENSE-Beziehungen zu EntraServicePlan. Identifiziere ungenutzte Lizenzen, Über-/Unterlizenzierung.",
+      "expected_result": "Lizenz-Optimierungs-Report mit Kosteneinsparungspotential.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Conditional Access Policy Coverage",
+      "prompt": "Bewerte Conditional Access Policy Coverage basierend auf User-Kategorien. Identifiziere Lücken in der Abdeckung.",
+      "expected_result": "Conditional Access Coverage Report mit Gap-Analyse.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Authentication Methods Analyse",
+      "prompt": "Analysiere EntraAuthMethod-Objekte über INCLUDES_METHOD. Bewerte Methoden-Verteilung und Sicherheitsniveau.",
+      "expected_result": "Authentication Methods Report mit Sicherheitsbewertung und Modernisierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID B2B Collaboration",
+      "prompt": "Analysiere B2B-Gastbenutzer (EntraGuestUser). Bewerte externe Organisationen, Berechtigungen und Risiken.",
+      "expected_result": "B2B Collaboration Report mit Partner-Analyse und Governance-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Cloud-Only User Analyse",
+      "prompt": "Identifiziere EntraUser ohne SYNCED_FROM-Beziehung (Cloud-Only). Analysiere deren Verwendung und Governance.",
+      "expected_result": "Cloud-Only User Report mit Verwendungsanalyse und Governance-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Mailbox Berechtigungen",
+      "prompt": "Analysiere EntraMailbox und EntraMailboxPermission. Identifiziere übermäßige Delegierungen und Shared Mailbox Governance.",
+      "expected_result": "Mailbox Permissions Report mit Risikobewertung und Optimierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Distribution List Modernisierung",
+      "prompt": "Analysiere EntraDistributionList. Bewerte Modernisierungspotential zu Microsoft 365 Groups.",
+      "expected_result": "Distribution List Modernisierungs-Report mit Migrations-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Sign-In Risk",
+      "prompt": "Analysiere User mit erhöhtem Sign-In-Risiko basierend auf Konfiguration und Verhalten. Bewerte Identity Protection Status.",
+      "expected_result": "Sign-In Risk Report mit Risiko-Usern und Mitigationsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Unified Groups Governance",
+      "prompt": "Analysiere EntraGroup mit isUnifiedGroup=true. Bewerte Lifecycle, Naming Conventions und Expiration Policies.",
+      "expected_result": "Unified Groups Governance Report mit Lifecycle-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Application Credential Expiration",
+      "prompt": "Analysiere EntraApplication passwordCredentials und keyCredentials. Identifiziere abgelaufene oder bald ablaufende Credentials.",
+      "expected_result": "Application Credential Expiration Report mit Renewal-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Device Trust",
+      "prompt": "Analysiere Device Trust Status (Entra Joined, Hybrid Joined, Registered). Bewerte Compliance und Conditional Access Impact.",
+      "expected_result": "Device Trust Report mit Compliance-Status und Optimierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "External Identities Governance",
+      "prompt": "Analysiere alle externen Identitäten (Gäste, B2B). Bewerte Lifecycle, Access Reviews und Compliance.",
+      "expected_result": "External Identities Governance Report mit Lifecycle-Management-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Cloud Security Posture",
+        "CIS_Microsoft_365": "CIS Benchmarks for M365",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Entra ID",
+      "title": "Entra ID Security Defaults vs. Conditional Access",
+      "prompt": "Bewerte ob Security Defaults oder Conditional Access verwendet wird. Analysiere Abdeckung und Empfehle Migration.",
+      "expected_result": "Security Configuration Report mit Modernisierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management",
+        "NIST_CSF": "Identity and Access Management",
+        "ISO_27001": "A.9 - Access Control",
+        "DSGVO": "Cloud Data Protection",
+        "HIPAA": "Cloud Security Requirements",
+        "SOC2": "Cloud Service Controls",
+        "FedRAMP": "Federal Risk and Authorization Management Program"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Governance Übersicht",
+      "prompt": "Analysiere alle TeamsTeam-Objekte. Bewerte Anzahl, Wachstum, Eigentümer-Verteilung und Governance-Status.",
+      "expected_result": "Teams Governance Dashboard mit KPIs und Governance-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams ohne Eigentümer",
+      "prompt": "Identifiziere TeamsTeam ohne aktive Eigentümer (OWNED_BY zu inaktiven Usern). Bewerte Risiko und Governance-Lücken.",
+      "expected_result": "Ownerless Teams Report mit Risikobewertung und Ownership-Zuweisung-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Channel Proliferation",
+      "prompt": "Analysiere HAS_CHANNEL-Beziehungen. Identifiziere Teams mit exzessiver Channel-Anzahl (>50) und bewerte Verwaltbarkeit.",
+      "expected_result": "Channel Proliferation Report mit Konsolidierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Private Channels Governance",
+      "prompt": "Analysiere Private Channels (BELONGS_TO_PRIVATE_CHANNEL). Bewerte Verwendung, Berechtigungen und Compliance-Risiken.",
+      "expected_result": "Private Channels Governance Report mit Risikobewertung.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams-Gruppen Synchronisation",
+      "prompt": "Analysiere TEAMS_CONNECTED_GROUP-Beziehungen zu EntraGroup. Bewerte Synchronisationsstatus und Inkonsistenzen.",
+      "expected_result": "Teams-Groups Sync Report mit Inkonsistenzen und Korrekturempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Inaktive Teams",
+      "prompt": "Identifiziere TeamsTeam ohne Aktivität (basierend auf letzten Änderungen). Bewerte Archivierungs- oder Löschpotential.",
+      "expected_result": "Inactive Teams Report mit Archivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Mitgliedschafts-Explosion",
+      "prompt": "Analysiere MEMBER_OF_TEAM-Beziehungen. Identifiziere Teams mit >500 Mitgliedern und bewerte Kommunikationseffizienz.",
+      "expected_result": "Large Teams Report mit Segmentierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Guest Access in Teams",
+      "prompt": "Analysiere Gastbenutzer-Zugriff auf Teams (EntraGuestUser MEMBER_OF_TEAM). Bewerte Sicherheitsrisiken und Compliance.",
+      "expected_result": "Teams Guest Access Report mit Risikobewertung und Governance-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Naming Conventions",
+      "prompt": "Analysiere TeamsTeam-Namen auf Konsistenz und Namenskonventionen. Identifiziere Abweichungen und generische Namen.",
+      "expected_result": "Teams Naming Report mit Standardisierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Lifecycle Policy Compliance",
+      "prompt": "Bewerte Teams gegen Lifecycle Policies. Identifiziere Teams ohne Ablaufdatum oder Rezertifizierung.",
+      "expected_result": "Teams Lifecycle Compliance Report mit Policy-Enforcement-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "Complete Framework",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "Trust Services Criteria",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "External Access Risks in Teams",
+      "prompt": "Analysiere externe Zugriffe auf Teams-Ressourcen. Bewerte Risiken durch externe Teilnehmer und Datenexfiltration.",
+      "expected_result": "External Access Risk Report mit Mitigationsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams SharePoint Site Analyse",
+      "prompt": "Analysiere HAS_SHAREPOINT_SITE und HAS_PRIVATE_SITE-Beziehungen. Bewerte SharePoint-Integration und Speichernutzung.",
+      "expected_result": "Teams SharePoint Integration Report mit Speicheroptimierung.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Duplicate Teams Detection",
+      "prompt": "Identifiziere potentiell doppelte Teams basierend auf Namen, Mitgliedern und Zweck. Bewerte Konsolidierungspotential.",
+      "expected_result": "Duplicate Teams Report mit Konsolidierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Sensitivity Labels",
+      "prompt": "Bewerte Sensitivity Label-Anwendung auf Teams. Identifiziere unklassifizierte oder falsch klassifizierte Teams.",
+      "expected_result": "Teams Classification Report mit Label-Anwendungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams App Governance",
+      "prompt": "Analysiere verwendete Apps in Teams. Bewerte Sicherheitsrisiken, Berechtigungen und Compliance.",
+      "expected_result": "Teams Apps Governance Report mit Risiko-Apps und Policy-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Channel Moderation Settings",
+      "prompt": "Analysiere Moderation-Einstellungen in Channels. Bewerte Governance und Compliance mit Kommunikations-Policies.",
+      "expected_result": "Channel Moderation Report mit Governance-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Meeting Policies",
+      "prompt": "Bewerte Meeting Policy-Anwendung auf Teams. Identifiziere Lücken in Security-Settings (Lobby, Recording, etc.).",
+      "expected_result": "Teams Meeting Policy Report mit Security-Härtungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Data Loss Prevention",
+      "prompt": "Bewerte DLP-Policy-Anwendung auf Teams. Identifiziere Teams mit sensiblen Daten ohne DLP-Schutz.",
+      "expected_result": "Teams DLP Coverage Report mit Policy-Anwendungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Ownership Distribution",
+      "prompt": "Analysiere OWNED_BY-Beziehungen. Bewerte Eigentümer-Verteilung und identifiziere Konzentrations-Risiken.",
+      "expected_result": "Teams Ownership Distribution Report mit Delegation-Empfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Teams",
+      "title": "Teams Archivierungsstrategie",
+      "prompt": "Analysiere Teams-Alter und Aktivität. Entwickle eine Archivierungsstrategie basierend auf Lifecycle-Patterns.",
+      "expected_result": "Teams Archiving Strategy Report mit automatisierten Archivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "Microsoft_Secure_Score": "Teams Security Configuration",
+        "CIS_Microsoft_365": "Teams Security Benchmarks",
+        "ISO_27001": "A.9 - Access Control, A.13 - Communications Security",
+        "DSGVO": "Art. 32 - Cloud Collaboration Security",
+        "HIPAA": "164.312(e) - Transmission Security",
+        "SOC2": "CC6 - Logical and Physical Access Controls",
+        "NIST_CSF": "PR.AC - Identity Management and Access Control",
+        "Microsoft_Teams_Security": "Teams Governance Best Practices"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Inaktive User-Konten",
+      "prompt": "Identifiziere User ohne Anmeldung in den letzten 90 Tagen (lastLogonTimestamp). Priorisiere nach Berechtigungen und Gruppenmitgliedschaften.",
+      "expected_result": "Inactive User Report mit Risikobewertung und Deaktivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Deaktivierte Konten mit Berechtigungen",
+      "prompt": "Finde User mit ACCOUNTDISABLE=true, die noch Berechtigungen auf Ressourcen haben (HAS_PERMISSION, ACE-Beziehungen).",
+      "expected_result": "Disabled Accounts Permissions Report mit Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.1.1 - Access control policy",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-4 - Access permissions managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Nie angemeldete Konten",
+      "prompt": "Identifiziere User-Konten ohne jemals erfolgte Anmeldung (lastLogonTimestamp=null, Alter >30 Tage). Bewerte Löschpotential.",
+      "expected_result": "Never-Logged-In Accounts Report mit Löschempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Passwort nie geändert",
+      "prompt": "Finde User mit pwdLastSet-Datum vor >1 Jahr oder bei Account-Erstellung. Bewerte Sicherheitsrisiko.",
+      "expected_result": "Stale Password Report mit Risikobewertung und Passwort-Reset-Empfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.4.3 - Password management system",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning",
+        "NIST_800-63B": "Password Guidelines"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Verwaiste Computer-Objekte",
+      "prompt": "Identifiziere Computer ohne Anmeldung in den letzten 180 Tagen. Bewerte ob Systeme noch existieren oder Objekte gelöscht werden können.",
+      "expected_result": "Orphaned Computer Objects Report mit Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Inaktive Service-Accounts",
+      "prompt": "Finde Service-Accounts (User mit servicePrincipalName) ohne Aktivität. Bewerte ob Services noch aktiv sind.",
+      "expected_result": "Inactive Service Accounts Report mit Validierungs- und Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Obsolete Gruppen-Mitgliedschaften",
+      "prompt": "Identifiziere User in Gruppen, die seit >1 Jahr keine Änderung hatten und nie verwendet wurden. Bewerte Cleanup-Bedarf.",
+      "expected_result": "Obsolete Group Memberships Report mit Optimierungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Entra ID Gastbenutzer Cleanup",
+      "prompt": "Analysiere EntraGuestUser nach Inaktivität und Einladungsalter (invitationAgeDays). Identifiziere Gäste ohne Aktivität >180 Tage.",
+      "expected_result": "Guest User Cleanup Report mit Löschempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning",
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Abgelaufene Konten",
+      "prompt": "Identifiziere User mit accountExpires-Datum in der Vergangenheit, die noch aktiv sind. Bewerte Deaktivierungsbedarf.",
+      "expected_result": "Expired Accounts Report mit Deaktivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Duplicate User Accounts",
+      "prompt": "Identifiziere potentiell doppelte User-Konten basierend auf Namen, E-Mail und Attributen. Bewerte Konsolidierungsbedarf.",
+      "expected_result": "Duplicate Accounts Report mit Konsolidierungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Gesperrte Konten Analyse",
+      "prompt": "Analysiere User mit LOCKOUT=true oder lockedOut=true. Bewerte ob Konten entsperrt oder deaktiviert werden sollten.",
+      "expected_result": "Locked Accounts Report mit Entsperrungs- oder Deaktivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Test- und Demo-Konten",
+      "prompt": "Identifiziere Konten mit Namen wie 'test', 'demo', 'temp' in Produktivumgebung. Bewerte Sicherheitsrisiko und Löschbedarf.",
+      "expected_result": "Test Accounts Report mit Risikobewertung und Löschempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Ehemalige Mitarbeiter Konten",
+      "prompt": "Identifiziere User in OUs wie 'Disabled', 'Former', 'Terminated'. Bewerte ob Konten gelöscht oder archiviert werden können.",
+      "expected_result": "Former Employee Accounts Report mit Archivierungs-/Löschempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Ungenutzte gMSA",
+      "prompt": "Analysiere GroupManagedServiceAccount ohne Verwendung (keine Verknüpfungen zu Services). Bewerte Löschpotential.",
+      "expected_result": "Unused gMSA Report mit Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Obsolete Computer nach OS-Version",
+      "prompt": "Identifiziere Computer mit veralteten Betriebssystemen (operatingSystemVersion). Bewerte ob Systeme noch in Betrieb sind.",
+      "expected_result": "Obsolete OS Report mit Migrations- oder Dekommissionierungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Inaktive Entra ID User",
+      "prompt": "Analysiere EntraUser ohne Aktivität. Identifiziere Cloud-Only User ohne Sign-In in den letzten 90 Tagen.",
+      "expected_result": "Inactive Entra ID Users Report mit Deaktivierungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning",
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Ungenutzte Entra Applications",
+      "prompt": "Identifiziere EntraApplication ohne Verwendung (keine Sign-Ins, keine aktiven Service Principals). Bewerte Löschpotential.",
+      "expected_result": "Unused Applications Report mit Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning",
+        "Microsoft_Secure_Score": "Identity Security Recommendations",
+        "CIS_Microsoft_365": "Identity and Access Management"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Verwaiste Local Group Memberships",
+      "prompt": "Analysiere LOCAL_MEMBER_OF-Beziehungen zu gelöschten oder inaktiven Accounts. Bewerte Cleanup-Bedarf.",
+      "expected_result": "Orphaned Local Memberships Report mit Bereinigungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Inaktive IntuneDevices",
+      "prompt": "Identifiziere IntuneDevice ohne Check-In in den letzten 60 Tagen. Bewerte ob Geräte noch existieren.",
+      "expected_result": "Inactive Intune Devices Report mit Cleanup-Empfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "A.9.2.1 - User registration and de-registration",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "CC6.1 - Logical Access - User Provisioning"
+      }
+    },
+    {
+      "category": "Obsolete Accounts",
+      "title": "Account Lifecycle Compliance",
+      "prompt": "Bewerte die Einhaltung von Account Lifecycle Policies. Identifiziere Konten, die gegen Joiner-Mover-Leaver-Prozesse verstoßen.",
+      "expected_result": "Account Lifecycle Compliance Report mit Process-Verbesserungsempfehlungen.",
+      "compliance_frameworks": {
+        "MITRE_ATT&CK": "T1078 - Valid Accounts",
+        "PingCastle": "Stale Objects Detection",
+        "ISO_27001": "Complete Framework",
+        "BSI_IT-Grundschutz": "ORP.4 - Identitäts- und Berechtigungsmanagement",
+        "CIS_Controls": "CIS Control 5.3 - Disable Dormant Accounts",
+        "NIST_CSF": "PR.AC-1 - Identities and credentials managed",
+        "HIPAA": "164.308(a)(3)(ii)(C) - Termination procedures",
+        "DSGVO": "Art. 5(1)(e) - Storage limitation",
+        "SOC2": "Trust Services Criteria"
+      }
+    }
+  ]
+}
