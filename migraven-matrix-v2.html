@@ -417,7 +417,6 @@
 
         /* Prompt Cell */
         .prompt-cell {
-            position: relative;
             cursor: help;
         }
 
@@ -434,7 +433,7 @@
             line-height: 1.4;
         }
 
-        /* Tooltip - MAXIMUM Z-INDEX */
+        /* Tooltip - MAXIMUM Z-INDEX für oberste Ebene */
         .prompt-tooltip {
             position: fixed;
             display: none;
@@ -445,7 +444,8 @@
             padding: 1.25rem;
             max-width: 650px;
             width: max-content;
-            z-index: 2147483647;
+            /* Maximaler z-index für oberste Anzeige-Ebene - muss höher sein als sticky headers (z-index: 11) */
+            z-index: 9999999;
             pointer-events: none;
         }
 
