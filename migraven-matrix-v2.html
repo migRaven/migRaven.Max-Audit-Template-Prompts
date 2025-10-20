@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>migRaven.Max Audit-Capabilities - Compliance Matrix</title>
+    <style>
+        /* Shadcn/UI Theme Variables */
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --primary: 221.2 83.2% 53.3%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 221.2 83.2% 53.3%;
+            --radius: 0.5rem;
+            --success: 142.1 76.2% 36.3%;
+            --success-foreground: 355.7 100% 97.3%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Header Section */
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: hsl(var(--foreground));
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .page-description {
+            font-size: 1rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 1rem;
+        }
+
+        .badge-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: calc(var(--radius) - 2px);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+            border: 1px solid hsl(var(--border));
+        }
+
+        /* Card Component */
+        .card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: hsl(var(--foreground));
+            margin-bottom: 1rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: hsl(var(--muted));
+            border-radius: calc(var(--radius) - 2px);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: hsl(var(--primary));
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: calc(var(--radius) - 2px);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 1px solid hsl(var(--border));
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            padding: 0.5rem 1rem;
+            height: 2.5rem;
+        }
+
+        .btn:hover {
+            background: hsl(var(--accent));
+            color: hsl(var(--accent-foreground));
+        }
+
+        .btn-primary {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border-color: hsl(var(--primary));
+        }
+
+        .btn-primary:hover {
+            background: hsl(var(--primary) / 0.9);
+        }
+
+        .input {
+            flex: 1;
+            min-width: 250px;
+            height: 2.5rem;
+            border-radius: calc(var(--radius) - 2px);
+            border: 1px solid hsl(var(--input));
+            background: hsl(var(--background));
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            color: hsl(var(--foreground));
+            transition: all 0.2s;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: hsl(var(--ring));
+            box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+        }
+
+        .input::placeholder {
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            border: 3px solid hsl(var(--muted));
+            border-top: 3px solid hsl(var(--primary));
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+        }
+
+        /* Tree Structure */
+        .tree-container {
+            margin-top: 1.5rem;
+        }
+
+        .tree-category {
+            margin-bottom: 1rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: hsl(var(--card));
+            transition: all 0.2s;
+        }
+
+        .tree-category:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s;
+            background: hsl(var(--background));
+        }
+
+        .category-header:hover {
+            background: hsl(var(--muted));
+        }
+
+        .category-header.active {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+        }
+
+        .category-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: hsl(var(--muted));
+            color: hsl(var(--muted-foreground));
+            border-radius: 9999px;
+            padding: 0.125rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            min-width: 2rem;
+        }
+
+        .category-header.active .category-count {
+            background: hsl(var(--primary-foreground) / 0.2);
+            color: hsl(var(--primary-foreground));
+        }
+
+        .category-toggle {
+            font-size: 1.25rem;
+            transition: transform 0.2s;
+            color: hsl(var(--muted-foreground));
+        }
+
+        .category-header.active .category-toggle {
+            transform: rotate(90deg);
+            color: hsl(var(--primary-foreground));
+        }
+
+        .category-prompts {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .category-prompts.expanded {
+            max-height: 20000px;
+            transition: max-height 0.8s ease-in;
+        }
+
+        /* Matrix Table */
+        .matrix-wrapper {
+            overflow-x: auto;
+            background: hsl(var(--background));
+            position: relative;
+        }
+
+        .compliance-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            position: relative;
+        }
+
+        .compliance-matrix thead {
+            background: hsl(var(--muted));
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .compliance-matrix th {
+            padding: 0.75rem 0.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: hsl(var(--foreground));
+            border-bottom: 1px solid hsl(var(--border));
+            border-right: 1px solid hsl(var(--border));
+            white-space: nowrap;
+            font-size: 0.75rem;
+        }
+
+        .compliance-matrix th:first-child {
+            min-width: 350px;
+            position: sticky;
+            left: 0;
+            background: hsl(var(--muted));
+            z-index: 11;
+        }
+
+        .compliance-matrix th.standard-col {
+            text-align: center;
+            min-width: 60px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            padding: 0.75rem 0.5rem;
+        }
+
+        .compliance-matrix tbody tr {
+            border-bottom: 1px solid hsl(var(--border));
+            transition: all 0.15s;
+            position: relative;
+        }
+
+        .compliance-matrix tbody tr:hover {
+            background: hsl(var(--muted) / 0.5);
+        }
+
+        .compliance-matrix td {
+            padding: 0.75rem;
+            border-right: 1px solid hsl(var(--border));
+            position: relative;
+        }
+
+        .compliance-matrix td:first-child {
+            position: sticky;
+            left: 0;
+            background: hsl(var(--card));
+            z-index: 5;
+            border-right: 2px solid hsl(var(--border));
+        }
+        
+        .compliance-matrix tbody tr:hover td:first-child {
+            background: hsl(var(--muted) / 0.5);
+        }
+
+        .compliance-matrix td.standard-cell {
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .check-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: hsl(var(--success));
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        /* Prompt Cell */
+        .prompt-cell {
+            position: relative;
+            cursor: help;
+        }
+
+        .prompt-title {
+            font-weight: 600;
+            color: hsl(var(--foreground));
+            margin-bottom: 0.375rem;
+            font-size: 0.9375rem;
+        }
+
+        .prompt-preview {
+            font-size: 0.8125rem;
+            color: hsl(var(--muted-foreground));
+            line-height: 1.4;
+        }
+
+        /* Tooltip - MAXIMUM Z-INDEX */
+        .prompt-tooltip {
+            position: fixed;
+            display: none;
+            background: hsl(var(--popover));
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            padding: 1.25rem;
+            max-width: 650px;
+            width: max-content;
+            z-index: 2147483647;
+            pointer-events: none;
+        }
+
+        .prompt-cell:hover .prompt-tooltip {
+            display: block;
+            pointer-events: auto;
+        }
+
+        .tooltip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+
+        .tooltip-title {
+            flex: 1;
+            font-weight: 600;
+            color: hsl(var(--foreground));
+            font-size: 1rem;
+        }
+
+        .tooltip-copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 0.875rem;
+            border-radius: calc(var(--radius) - 2px);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tooltip-copy-btn:hover {
+            background: hsl(var(--primary) / 0.9);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .tooltip-copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .tooltip-copy-btn.copied {
+            background: hsl(var(--success));
+            color: hsl(var(--success-foreground));
+        }
+
+        .tooltip-text {
+            font-size: 0.8125rem;
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .tooltip-hint {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid hsl(var(--border));
+            font-size: 0.75rem;
+            color: hsl(var(--muted-foreground));
+            font-style: italic;
+        }
+
+        /* Alert */
+        .alert {
+            background: hsl(var(--muted));
+            border: 1px solid hsl(var(--border));
+            border-left: 4px solid hsl(var(--primary));
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: hsl(var(--foreground));
+            font-size: 0.875rem;
+        }
+
+        .alert-description {
+            font-size: 0.8125rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Footer */
+        .card-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid hsl(var(--border));
+            background: hsl(var(--muted) / 0.5);
+            text-align: center;
+            font-size: 0.8125rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        .card-footer a {
+            color: hsl(var(--primary));
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .card-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: hsl(var(--foreground));
+            color: hsl(var(--background));
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            opacity: 0;
+            transform: translateY(1rem);
+            transition: all 0.3s;
+            z-index: 2147483646;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            max-width: 400px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast.success {
+            background: hsl(var(--success));
+            color: hsl(var(--success-foreground));
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem 0.5rem;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .input {
+                min-width: 100%;
+            }
+
+            .compliance-matrix th:first-child {
+                min-width: 250px;
+            }
+
+            .prompt-tooltip {
+                left: 1rem !important;
+                right: 1rem !important;
+                max-width: none !important;
+                width: auto !important;
+            }
+
+            .tooltip-header {
+                flex-direction: column;
+            }
+
+            .toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(0.5rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tree-category {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Scrollbar */
+        .tooltip-text::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .tooltip-text::-webkit-scrollbar-track {
+            background: hsl(var(--muted));
+            border-radius: 3px;
+        }
+
+        .tooltip-text::-webkit-scrollbar-thumb {
+            background: hsl(var(--muted-foreground) / 0.3);
+            border-radius: 3px;
+        }
+
+        .tooltip-text::-webkit-scrollbar-thumb:hover {
+            background: hsl(var(--muted-foreground) / 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">migRaven.Max Audit-Capabilities</h1>
+            <p class="page-description">
+                Diese interaktive Compliance-Matrix zeigt alle 200 Security Audit Prompts mit ihrer Framework-Abdeckung. 
+                Bewegen Sie die Maus über einen Prompt um den vollständigen Text zu sehen und zu kopieren.
+            </p>
+            <div class="badge-group">
+                <span class="badge">✓ Live GitHub-Integration</span>
+                <span class="badge">✓ 12 Kategorien</span>
+                <span class="badge">✓ 200 Prompts</span>
+                <span class="badge">✓ 25+ Compliance-Standards</span>
+                <span class="badge">✓ Copy-to-Clipboard</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Compliance Coverage Matrix v2.0</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="total-prompts">200</span>
+                        <span class="stat-label">Security Prompts</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="total-categories">12</span>
+                        <span class="stat-label">Kategorien</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="total-frameworks">24</span>
+                        <span class="stat-label">Compliance Standards</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="expand-all" class="btn">▼ Alle aufklappen</button>
+                    <button id="collapse-all" class="btn">▲ Alle zuklappen</button>
+                    <input type="text" id="search-prompts" placeholder="🔍 Prompts durchsuchen..." class="input">
+                </div>
+            </div>
+            
+            <div class="card-content">
+                <div id="tree-container">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p class="loading-text">Lade Compliance Matrix von GitHub...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                <p>Daten werden live von <a href="https://github.com/migRaven/migRaven.Max-Audit-Template-Prompts" target="_blank">GitHub Repository</a> geladen | © 2025 migRaven GmbH</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">
+        <span>✓</span>
+        <span id="toast-message">Prompt kopiert!</span>
+    </div>
+
+    <script>
+    (function() {
+        'use strict';
+        
+        const GITHUB_JSON_URL = 'https://cdn.jsdelivr.net/gh/migRaven/migRaven.Max-Audit-Template-Prompts@main/migraven_max_prompts_extended.json';
+        
+        const CATEGORY_ICONS = {
+            'IT Security': '🔒',
+            'Verwaltbarkeit': '⚙️',
+            'Onboarding': '👋',
+            'Verzeichnisstrukturen': '📁',
+            'CISO Berichte': '📊',
+            'Entra ID': '☁️',
+            'Teams': '👥',
+            'Obsolete Accounts': '🗑️',
+            'CleanUp Active Directory': '🧹',
+            'CleanUp Filesystem': '📂',
+            'CleanUp Entra ID & Intune': '☁️',
+            'Optimize Lizenzen': '💰'
+        };
+        
+        const EXCLUDED_FRAMEWORKS = ['PingCastle'];
+        
+        let promptsData = null;
+        let expandedCategories = new Set();
+        let allStandards = [];
+        
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<span>✓</span> Kopiert!';
+                button.classList.add('copied');
+                
+                showToast('Prompt erfolgreich kopiert! 📋', 'success');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Copy failed:', err);
+                showToast('Fehler beim Kopieren', 'error');
+            });
+        }
+        
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.className = 'toast show ' + type;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        function positionTooltip(tooltip, cell) {
+            const cellRect = cell.getBoundingClientRect();
+            const tooltipRect = tooltip.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            let left = cellRect.left;
+            let top = cellRect.bottom + 10;
+            
+            if (left + tooltipRect.width > viewportWidth - 20) {
+                left = viewportWidth - tooltipRect.width - 20;
+            }
+            if (left < 20) {
+                left = 20;
+            }
+            
+            if (top + tooltipRect.height > viewportHeight - 20) {
+                top = cellRect.top - tooltipRect.height - 10;
+                if (top < 20) {
+                    top = 20;
+                }
+            }
+            
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+        }
+        
+        async function loadPromptsData() {
+            try {
+                console.log('Loading data from:', GITHUB_JSON_URL);
+                const response = await fetch(GITHUB_JSON_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                }
+                
+                const text = await response.text();
+                console.log('Data loaded, length:', text.length);
+                promptsData = JSON.parse(text);
+                
+                const standardsSet = new Set();
+                promptsData.prompts.forEach(prompt => {
+                    if (prompt.compliance_frameworks) {
+                        Object.keys(prompt.compliance_frameworks).forEach(fw => {
+                            if (!EXCLUDED_FRAMEWORKS.includes(fw)) {
+                                standardsSet.add(fw);
+                            }
+                        });
+                    }
+                });
+                allStandards = Array.from(standardsSet).sort();
+                
+                renderTree();
+                updateStats();
+                setupTooltipPositioning();
+            } catch (error) {
+                console.error('Error loading prompts:', error);
+                document.getElementById('tree-container').innerHTML = `
+                    <div class="alert">
+                        <div class="alert-title">⚠️ Fehler beim Laden der Daten</div>
+                        <div class="alert-description">
+                            Die Prompts konnten nicht von GitHub geladen werden: ${error.message}
+                            <br><br>
+                            <strong>Geladene URL:</strong> ${GITHUB_JSON_URL}
+                            <br><br>
+                            <button onclick="location.reload()" class="btn btn-primary" style="margin-top: 0.5rem;">
+                                🔄 Erneut versuchen
+                            </button>
+                            <button onclick="window.tryAlternativeUrl()" class="btn" style="margin-top: 0.5rem; margin-left: 0.5rem;">
+                                🔄 Alternative URL versuchen
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        window.tryAlternativeUrl = async function() {
+            const alternativeUrl = 'https://raw.githubusercontent.com/migRaven/migRaven.Max-Audit-Template-Prompts/main/migraven_max_prompts_extended.json';
+            document.getElementById('tree-container').innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p class="loading-text">Versuche alternative URL...</p>
+                </div>
+            `;
+            
+            try {
+                const response = await fetch(alternativeUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                promptsData = await response.json();
+                const standardsSet = new Set();
+                promptsData.prompts.forEach(prompt => {
+                    if (prompt.compliance_frameworks) {
+                        Object.keys(prompt.compliance_frameworks).forEach(fw => {
+                            if (!EXCLUDED_FRAMEWORKS.includes(fw)) {
+                                standardsSet.add(fw);
+                            }
+                        });
+                    }
+                });
+                allStandards = Array.from(standardsSet).sort();
+                renderTree();
+                updateStats();
+                setupTooltipPositioning();
+                showToast('Daten erfolgreich über alternative URL geladen! ✅', 'success');
+            } catch (error) {
+                console.error('Alternative URL failed:', error);
+                document.getElementById('tree-container').innerHTML = `
+                    <div class="alert">
+                        <div class="alert-title">❌ Beide URLs fehlgeschlagen</div>
+                        <div class="alert-description">
+                            Fehler: ${error.message}
+                            <br><br>
+                            Bitte überprüfen Sie:
+                            <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                                <li>Ihre Internet-Verbindung</li>
+                                <li>Ob das GitHub Repository öffentlich zugänglich ist</li>
+                                <li>Browser-Konsole für weitere Details (F12)</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+        };
+        
+        function setupTooltipPositioning() {
+            document.addEventListener('mouseover', function(e) {
+                const cell = e.target.closest('.prompt-cell');
+                if (cell) {
+                    const tooltip = cell.querySelector('.prompt-tooltip');
+                    if (tooltip) {
+                        setTimeout(() => positionTooltip(tooltip, cell), 10);
+                    }
+                }
+            });
+        }
+        
+        function updateStats() {
+            if (!promptsData) return;
+            
+            document.getElementById('total-prompts').textContent = promptsData.metadata.total_prompts;
+            document.getElementById('total-categories').textContent = promptsData.metadata.categories.length;
+            document.getElementById('total-frameworks').textContent = allStandards.length;
+        }
+        
+        function renderTree() {
+            if (!promptsData) return;
+            
+            const container = document.getElementById('tree-container');
+            const categories = promptsData.metadata.categories;
+            
+            let html = `
+                <div class="alert">
+                    <div class="alert-title">📊 Compliance Coverage Matrix</div>
+                    <div class="alert-description">
+                        ✓ = Prompt deckt diesen Standard ab | 
+                        🖱️ = Bewegen Sie die Maus über einen Prompt um den vollständigen Text zu sehen und zu kopieren
+                    </div>
+                </div>
+                <div class="tree-container">
+            `;
+            
+            categories.forEach((category, index) => {
+                const categoryPrompts = promptsData.prompts.filter(p => p.category === category);
+                const icon = CATEGORY_ICONS[category] || '📋';
+                const isExpanded = expandedCategories.has(category);
+                const categoryId = category.replace(/\s+/g, '-');
+                
+                html += `
+                    <div class="tree-category" data-category="${category}" style="animation-delay: ${index * 0.03}s">
+                        <div class="category-header ${isExpanded ? 'active' : ''}" onclick="toggleCategory('${category}')">
+                            <div class="category-title">
+                                <span class="category-icon">${icon}</span>
+                                <span>${category}</span>
+                                <span class="category-count">${categoryPrompts.length}</span>
+                            </div>
+                            <span class="category-toggle">▶</span>
+                        </div>
+                        <div class="category-prompts ${isExpanded ? 'expanded' : ''}" id="prompts-${categoryId}">
+                            <div class="matrix-wrapper">
+                                ${renderComplianceMatrix(categoryPrompts, categoryId)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+        
+        function renderComplianceMatrix(prompts, categoryId) {
+            let html = '<table class="compliance-matrix">';
+            
+            html += '<thead><tr>';
+            html += '<th>Prompt / Audit-Check</th>';
+            allStandards.forEach(standard => {
+                html += `<th class="standard-col" title="${standard}">${standard}</th>`;
+            });
+            html += '</tr></thead>';
+            
+            html += '<tbody>';
+            prompts.forEach((prompt, index) => {
+                const frameworks = prompt.compliance_frameworks || {};
+                const promptId = `prompt-${categoryId}-${index}`;
+                
+                html += '<tr>';
+                html += `<td>
+                    <div class="prompt-cell">
+                        <div class="prompt-title">${escapeHtml(prompt.title)}</div>
+                        <div class="prompt-preview">${truncate(escapeHtml(prompt.prompt), 100)}...</div>
+                        <div class="prompt-tooltip">
+                            <div class="tooltip-header">
+                                <div class="tooltip-title">${escapeHtml(prompt.title)}</div>
+                                <button class="tooltip-copy-btn" onclick="event.stopPropagation(); copyPrompt('${promptId}', this)">
+                                    <span>📋</span> Kopieren
+                                </button>
+                            </div>
+                            <div class="tooltip-text">${formatPromptText(prompt.prompt)}</div>
+                            <div class="tooltip-hint">💡 Bewegen Sie die Maus weg um dieses Fenster zu schließen</div>
+                        </div>
+                    </div>
+                    <textarea id="${promptId}" style="position: absolute; left: -9999px;">${escapeHtml(prompt.prompt)}</textarea>
+                </td>`;
+                
+                allStandards.forEach(standard => {
+                    const hasCoverage = frameworks.hasOwnProperty(standard);
+                    html += `<td class="standard-cell">
+                        ${hasCoverage ? '<span class="check-mark">✓</span>' : ''}
+                    </td>`;
+                });
+                
+                html += '</tr>';
+            });
+            html += '</tbody>';
+            
+            html += '</table>';
+            return html;
+        }
+        
+        function formatPromptText(text) {
+            return escapeHtml(text)
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+        }
+        
+        window.copyPrompt = function(promptId, button) {
+            const textarea = document.getElementById(promptId);
+            if (textarea) {
+                copyToClipboard(textarea.value, button);
+            }
+        };
+        
+        window.toggleCategory = function(category) {
+            const categoryId = category.replace(/\s+/g, '-');
+            const header = document.querySelector(`[data-category="${category}"] .category-header`);
+            const prompts = document.getElementById(`prompts-${categoryId}`);
+            
+            if (expandedCategories.has(category)) {
+                expandedCategories.delete(category);
+                header.classList.remove('active');
+                prompts.classList.remove('expanded');
+            } else {
+                expandedCategories.add(category);
+                header.classList.add('active');
+                prompts.classList.add('expanded');
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('expand-all')?.addEventListener('click', function() {
+                if (!promptsData) return;
+                promptsData.metadata.categories.forEach(category => {
+                    expandedCategories.add(category);
+                });
+                renderTree();
+            });
+            
+            document.getElementById('collapse-all')?.addEventListener('click', function() {
+                expandedCategories.clear();
+                renderTree();
+            });
+            
+            document.getElementById('search-prompts')?.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const rows = document.querySelectorAll('.compliance-matrix tbody tr');
+                
+                rows.forEach(row => {
+                    const cell = row.querySelector('.prompt-cell');
+                    const text = cell ? cell.textContent.toLowerCase() : '';
+                    
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = searchTerm ? 'none' : '';
+                    }
+                });
+                
+                if (searchTerm) {
+                    document.querySelectorAll('.tree-category').forEach(cat => {
+                        const table = cat.querySelector('.compliance-matrix');
+                        if (table) {
+                            const visibleRows = Array.from(table.querySelectorAll('tbody tr'))
+                                .filter(row => row.style.display !== 'none');
+                            
+                            if (visibleRows.length > 0) {
+                                const category = cat.dataset.category;
+                                if (!expandedCategories.has(category)) {
+                                    expandedCategories.add(category);
+                                    const header = cat.querySelector('.category-header');
+                                    const prompts = cat.querySelector('.category-prompts');
+                                    header.classList.add('active');
+                                    prompts.classList.add('expanded');
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        
+        function truncate(text, length) {
+            return text.length > length ? text.substring(0, length) : text;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        loadPromptsData();
+        
+    })();
+    </script>
+</body>
+</html>
